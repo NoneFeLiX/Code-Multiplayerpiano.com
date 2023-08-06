@@ -1,0 +1,223 @@
+<! DOCTYPE html>
+<html>
+<голова>
+ <meta http-equiv="content-type" content="text/html; кодировка = UTF-8"/>
+ <название>Многопользовательское пианино</название>
+    <meta name="description"
+ content="Онлайн-пианино, на котором можно играть в одиночку или с другими в режиме реального времени. Поддержка MIDI, 88 клавиш, чувствительность к скорости. Вы можете продемонстрировать свое мастерство или поболтать, слушая, как играют другие». />
+    <link rel="stylesheet" href="https://mppclone.com/screen.css"/>
+    <link rel="stylesheet" href="/screen.css"/>
+
+    <link rel="canonical" href="https://multiplayerpiano.com/">
+    <script src="https://mppclone.com/binary.js"></script>
+
+ <сценарий>
+      window.aiptag = window.aiptag || {cmd: []};
+      aiptag.cmd.display = aiptag.cmd.display || [];
+      aiptag.cmd.player = aiptag.cmd.player || [];
+
+ Настройки инструмента CMP
+      aiptag.cmp = {
+ Покажите: правда,
+ положение: "по центру", //по центру, внизу
+ кнопка: true,
+ buttonText: «Настройки конфиденциальности»,
+ buttonPosition: "внизу-слева" //внизу-слева, внизу-справа, вверху-слева, вверху-справа
+      }
+
+      aiptag.cmd.player.push(function() {
+        aiptag.adplayer = new aipPlayer({
+          AD_WIDTH: 960,
+          AD_HEIGHT: 540,
+ AD_DISPLAY: 'default', //default, полноэкранный, по центру, заливка
+ LOADING_TEXT: «загрузка рекламы»,
+          PREROLL_ELEM: function(){return document.getElementById('preroll')},
+          AIP_COMPLETE: function (evt)  {
+            /*******************
+ ПРЕДУПРЕЖДЕНИЕ*****
+             *******************
+ Пожалуйста, не удаляйте PREROLL_ELEM
+ Со страницы он будет скрыт автоматически.
+ Если вы хотите удалить его, используйте обратный вызов AIP_REMOVE.
+             */
+ alert("Объявление преролла завершено: " + evt);
+          },
+          AIP_REMOVE: function ()  {
+ Здесь можно сохранить, чтобы удалить PREROLL_ELEM со страницы, если хотите. Но это не рекомендуется.
+          }
+        });
+      });
+
+      function show_preroll() {
+ Проверьте, правильно ли загружен adslib или заблокирован блокировщиками рекламы и т. Д.
+        if (typeof aiptag.adplayer !== 'undefined') {
+          aiptag.cmd.player.push(function() { aiptag.adplayer.startPreRoll(); });
+        } else {
+ Adlib не загружается, это может быть связано с блокировщиком рекламы, тайм-аутом и т. Д.
+ Пожалуйста, добавьте сюда свой сценарий, который запускает контент, обычно это тот же сценарий, который добавлен в AIP_COMPLETE или AIP_REMOVE.
+ alert(«Объявление не может быть загружено, загрузите свой контент здесь»);
+        }
+      }
+ </сценарий>
+    <script async src="//api.adinplay.com/libs/aiptag/pub/BTP/multiplayerpiano.com/tag.min.js"></script>
+</голова>
+<тело>
+
+<стиль>
+    .ad1 {
+        position: fixed;
+        top: 100px;
+        z-index: 99999;
+        /*background: red;*/
+        width: 970px;
+        height: 90px;
+        right: 0;
+    }
+    .discord {
+        background: white;
+        padding: 10px;
+        height: 35px;
+        position: fixed;
+        right: 0;
+        top: 24px;
+        z-index: 99999;
+    }
+    .blog {
+        background: white;
+        padding: 10px;
+        height: 8px;
+        line-height: 7px;
+        position: fixed;
+        right: 153px;
+        top: 0px;
+        z-index: 99999;
+        font-size: 17px;
+        border: 3px solid #ff4466;
+    }
+    .contribute {
+        background: white;
+        padding: 10px;
+        height: 8px;
+        line-height: 7px;
+        position: fixed;
+        right: 265px;
+        top: 0px;
+        z-index: 99999;
+        font-size: 17px;
+        border: 3px solid #ff4466;
+    }
+</style>
+
+<script>
+  setInterval(function(){
+    aiptag.cmd.display.push(function() { aipDisplayTag.display('multiplayerpiano-com_970x90'); });
+  }, 14 * 1000)
+</script>
+
+<div class='ad1' id='multiplayerpiano-com_970x90'>
+    <script type='text/javascript'>
+      aiptag.cmd.display.push(function() { aipDisplayTag.display('multiplayerpiano-com_970x90'); });
+    </script>
+</div>
+
+<a class="discord" href="https://discord.gg/Xr5dubEYgV" target="_blank">Join Official Discord 2021</a>
+<a class="blog" href="https://multiplayerpiano.com/c/latest/" target="_blank">Piano Blog</a>
+<a class="contribute" href="https://multiplayerpiano.com/contribute-piano/" target="_blank">Contribute</a>
+<div id="social">
+    <div id="like-button">
+        <div class="fb-like" data-href="https://www.facebook.com/MultiplayerPiano/" data-layout="button_count"
+             data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+    </div>
+    <div id="inclinations"></div>
+</div>
+
+
+
+<div id="chat">
+    <ul></ul>
+    <input id="chat-input" placeholder="You can chat with this thing." class="translate" maxlength="512"/></div>
+<div id="room-notice"></div>
+<div id="names"></div>
+<div id="piano"></div>
+<div id="cursors"></div>
+<noscript>
+    <center><p> Multiplayer Piano is an online, full 88-key piano you can play alone or with others in real-time. Plug
+        up your MIDI keyboard, MIDI in and out are supported. You should be able to hear some seriously talented piano
+        players performing here! Join in or just chat and listen.</p>
+        <p> For good performance, Chrome is highly recommended. Firefox also supports the requisite Web Audio API, but
+            performance may not be as good. Chrome has Web MIDI.</p>
+        <p> Of course, first you need to <a href="http://www.enable-javascript.com/" class="link">Enable Javascript</a>
+            or it won't do anything...!</p></center>
+</noscript>
+<div id="bottom">
+    <div class="relative">
+        <div id="room">
+            <div class="info"></div>
+            <div class="expand"></div>
+            <div class="more">
+                <div class="new translate">New Room...</div>
+            </div>
+        </div>
+        <div id="new-room-btn" class="ugly-button translate">New Room...</div>
+        <div id="play-alone-btn" class="ugly-button">Play Alone</div>
+        <div id="room-settings-btn" class="ugly-button">Room Settings</div>
+        <div id="midi-btn" class="ugly-button translate">MIDI In/Out</div>
+        <div id="record-btn" class="ugly-button translate">Record MP3</div>
+        <div id="synth-btn" class="ugly-button translate">Synth</div>
+        <div id="sound-btn" class="ugly-button sound-btn">Sound Select</div>
+        <div id="client-settings-btn" class="ugly-button client-settings-btn">Client Settings</div>
+        <div id="clearchat-btn" class="ugly-button clearchat-btn" style="display: none;">Clear Chat</div>
+        <div id="getcrown-btn" class="ugly-button getcrown-btn" style="display: none;">Get Crown</div>
+        <div id="makelobby-btn" class="ugly-button makelobby-btn" style="display: none;">Make Lobby</div>
+        <div id="status"></div>
+        <div id="volume"><input type="range" id="volume-slider" min="0.0" max="1.0" step="0.01"></div>
+        <div id="volume-label">volume</div>
+        <div id="quota">
+            <div class="value"></div>
+        </div>
+    </div>
+</div>
+<div id="modal">
+    <div class="bg"></div>
+    <div id="modals">
+        <div id="sound-warning" class="dialog"><p>This site makes a lot of sound! You may want to adjust the volume
+            before continuing.</p>
+            <button class="submit">PLAY</button>
+        </div>
+        <div id="new-room" class="dialog"><p><input type="text" name="name" placeholder="room name"
+                                                    class="text translate" maxlength="512"/></p>
+            <p><label><input type="checkbox" name="visible" class="checkbox translate" checked>Visible (open to
+                everyone)</label></p> </label></p>
+            <button class="submit">go</button>
+        </div>
+        <div id="room-settings" class="dialog"><p>
+            <div class="ugly-button drop-crown">Drop crown</div>
+            </p><p><label><input type="checkbox" name="visible" class="checkbox translate" checked>Visible (open to
+                everyone)</label></p> </label></p><p><label><input type="checkbox" name="chat"
+                                                                   class="checkbox translate" checked>Enable
+                Chat</label></p>
+            <p><label><input type="checkbox" name="crownsolo" class="checkbox">Only Owner can Play
+                <button class="submit">APPLY</button>
+            <p><label><input type="checkbox" name="nocussing" class="checkbox">No Cussing</label></p>
+            <p><label>Inner color: &nbsp;<input type="color" name="color" placeholder="" maxlength="7"
+                                                class="color"></label></p>
+            <p><label>Outer color: &nbsp;<input type="color" name="color2" placeholder="" maxlength="7"
+                                                class="color"></label></p>
+            <p><label>Player limit: &nbsp;<input type="text" name="limit" maxlength="2" value="50"></label></p></div>
+        <div id="rename" class="dialog"><p><input type="text" name="name" placeholder="My Fancy New Name" maxlength="40"
+                                                  class="text"/> <input type="color" name="color" placeholder=""
+                                                                        maxlength="7" class="color"/></p>
+            <button class="submit">USER SET</button>
+        </div>
+    </div>
+</div>
+<script src="https://mppclone.com/jquery.min.js"></script>
+<script src="https://mppclone.com/util.js"></script>
+<script src="https://mppclone.com/Client.js"></script>
+<script src="https://mppclone.com/NoteQuota.js"></script>
+<script src="https://mppclone.com/lame.min.js"></script>
+<script src="https://mppclone.com/Color.js"></script>
+<script src="https://mppclone.com/antiNode.js"></script>
+<script src="https://mppclone.com/script.js"></script>
+</тело>
+</html>
